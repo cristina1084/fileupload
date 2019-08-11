@@ -1,6 +1,6 @@
 const express = require("express");  
 const multer = require('multer');  
-
+const path = require('path')
 const app = express();  
 
 app.set("view engine","ejs");  
@@ -16,16 +16,15 @@ var storage =   multer.diskStorage({
 });  
 
 var upload = multer({ storage : storage}).single('myfile');  
-  
+
+app.use(express.static(path.join(__dirname+"/public")));
+
 app.get('/',(req,res)=>{  
       res.render("file");  
 });  
   
-app.post('/upload',(req,res)=>{  
-    upload(req,res,(err)=>{  
-        if(err) return res.end("Error uploading file.");  
-        else res.end("File is uploaded successfully!");  
-    });  
+app.post('/', upload, (req,res)=>{  
+  res.status(204).send()  
 });  
   
 app.listen(2000,function(){  
