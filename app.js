@@ -26,7 +26,15 @@ app.get('/',(req,res)=>{
 app.post('/', upload, (req,res)=>{  
   res.status(204).send()  
 });  
-  
+
+app.get('/:id',(req, res) => {
+  var file = req.params.id;
+  var fileLocation = path.join('./public/images',file);
+  console.log(fileLocation);
+  res.download(fileLocation, file); 
+});
+
+
 app.listen(2000,function(){  
     console.log("Server is running on port 2000");  
 });  

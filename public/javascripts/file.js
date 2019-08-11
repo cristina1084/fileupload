@@ -20,7 +20,9 @@ $(document).ready(function() {
                i++;
                var result = "";
                for(j=0;j<file_arr.length;j++){
-                    result+="<tr><td>" + (j+1) + "</td><td>" + file_arr[j] + "</td><td>" + "<a href='#'><i class='fa fa-download' aria-hidden='true'></i></a> / <a href='#'> <i class='fa fa-image'></i> </a></td></tr>";                //important!
+                    var href = '/'+$.trim(file_arr[j]);
+                    //console.log(href);
+                    result+="<tr><td>" + (j+1) + "</td><td>" + file_arr[j] + "</td><td>" + "<a href='"+href+"'><i class='fa fa-download' aria-hidden='true'></i></a> / <a href='#'> <i class='fa fa-image'></i> </a></td></tr>";                //important!
                }
                $('#list').html(result);
            }  
